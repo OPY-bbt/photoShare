@@ -13,7 +13,7 @@ import SignUp from './pages/signUp';
 
 import store from './store';
 
-//import "../../node_modules/antd/dist/antd.min.css"
+import "../styles/antdStyleReset.css"
 
 const handleEnter = (nextState, replace) => {
 	console.log('there is user longin')

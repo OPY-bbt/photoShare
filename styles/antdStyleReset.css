@@ -1,0 +1,12 @@
+body{
+	padding: 1px;
+}
+#sign-wrap .login-form {
+  max-width: 300px;
+}
+#sign-wrap .login-form-forgot {
+  float: right;
+}
+#sign-wrap .login-form-button {
+  width: 100%;
+}

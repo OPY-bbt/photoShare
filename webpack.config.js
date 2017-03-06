@@ -1,5 +1,6 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: [
@@ -38,7 +39,7 @@ module.exports = {
     contentBase: resolve(__dirname, 'dist'),
     // match the output path
 
-    publicPath: '/'
+    publicPath: '/',
     // match the output `publicPath`
   },
 
@@ -58,7 +59,17 @@ module.exports = {
           'css-loader?modules',
           'postcss-loader',
         ],
+        include: resolve(__dirname, 'app')
       },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+        ],
+        include: [/node_modules/, /styles/]
+      }
     ],
   },
 
@@ -68,5 +79,13 @@ module.exports = {
 
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates
+
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: function () {
+          return [autoprefixer];
+        }
+      }
+    })
   ],
 };
