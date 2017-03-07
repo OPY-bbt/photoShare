@@ -16,3 +16,30 @@ export const login = (nickname,password)=>{
         console.log('login action')
     })
 }
+
+
+/**** login *****/
+export const SIGNUP_SHOW = 'SIGNUP_SHOW';
+export const SIGNUP_CREATE = 'SIGNUP_CREATE';
+export const SIGNUP_CANCEL = 'SIGNUP_CANCEL';
+
+export const signupShow = () => {
+  return {
+    type: SIGNUP_SHOW,
+    visible: true
+  }
+}
+
+export const signupCreate = () => {
+  return {
+    type: SIGNUP_CANCEL,
+    visible: false
+  }
+}
+
+export const signupCancel = () => {
+  return {
+    type: SIGNUP_CANCEL,
+    visible: false
+  }
+}

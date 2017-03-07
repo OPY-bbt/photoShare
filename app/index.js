@@ -9,7 +9,6 @@ import { AppContainer } from 'react-hot-loader';
 import App from './components/App';
 import Index from './pages/index';
 import Login from './pages/login';
-import SignUp from './pages/signUp';
 
 import store from './store';
 
@@ -20,7 +19,7 @@ const handleEnter = (nextState, replace) => {
 
 	let login = false;
 	if(login) {
-		replace({pathname: '/signup'});
+		console.log('welcome');
 	}else {
 		replace({pathname: '/login'});
 	}
@@ -31,11 +30,10 @@ const render = (Component) => {
     <AppContainer>
     	<Provider store={store}>
 	      <div>
-	      	<Router history = {browserHistory}>
+	      	<Router history = {hashHistory}>
 	      		<Route path = '/' component = {App}>
 							<IndexRoute component = {Index} onEnter = {(nextState, replace)=>handleEnter(nextState, replace)} />
 							<Route path = 'login' component={Login} />		
-							<Route path = 'signup' component={SignUp} />
 	      		</Route>
 	      	</Router>
 	      </div>

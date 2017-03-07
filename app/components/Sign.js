@@ -1,10 +1,49 @@
 import React, {PropTypes, Component} from 'react'
 import { Link, browserHistory } from 'react-router'
-import { Form, Icon, Input, Button, Checkbox, Row, Col} from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Row, Colm, Modal, Radio} from 'antd';
 
 import styles from '../css/sign.css'
 
 const FormItem = Form.Item;
+
+const CollectionCreateForm = Form.create()(
+  (props) => {
+    const { visible, onCancel, onCreate, form } = props;
+    const { getFieldDecorator } = form;
+    return (
+      <Modal
+        visible={visible}
+        title="Create a new collection"
+        okText="Create"
+        onCancel={onCancel}
+        onOk={onCreate}
+      >
+        <Form>
+          <FormItem label="Title">
+            {getFieldDecorator('title', {
+              rules: [{ required: true, message: 'Please input the title of collection!' }],
+            })(
+              <Input />
+            )}
+          </FormItem>
+          <FormItem label="Description">
+            {getFieldDecorator('description')(<Input type="textarea" />)}
+          </FormItem>
+          <FormItem className="collection-create-form_last-form-item">
+            {getFieldDecorator('modifier', {
+              initialValue: 'public',
+            })(
+              <Radio.Group>
+                <Radio value="public">Public</Radio>
+                <Radio value="private">Private</Radio>
+              </Radio.Group>
+            )}
+          </FormItem>
+        </Form>
+      </Modal>
+    );
+  }
+);
 
 class Sign extends React.Component {
   handleSubmit = (e) => {
@@ -15,8 +54,12 @@ class Sign extends React.Component {
       }
     });
   }
+  saveFormRef = (form) => {
+    this.form = form;
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
+    console.log(this.props.visible)
     return (
     	<div id="sign-wrap" className={styles.wrap}>
 				<Form onSubmit={this.handleSubmit} className="login-form">
@@ -41,13 +84,18 @@ class Sign extends React.Component {
 				    })(
 				      <Checkbox>Remember me</Checkbox>
 				    )}
-				    <a className="login-form-forgot">Forgot password</a>
 				    <Button type="primary" htmlType="submit" className="login-form-button">
-				      Log in
+				      {this.props.btnText}
 				    </Button>
-				    Or <a>register now!</a>
+				    Or <a onClick={this.props.signupShow}> {this.props.linkText}  &nbsp;&nbsp;</a>
 				  </FormItem>
 				</Form>
+				<CollectionCreateForm
+					//ref={this.saveFormRef}
+          visible={this.props.visible}
+          //onCancel={this.handleCancel}
+          //onCreate={this.handleCreate}
+        />
     	</div>
     );
   }
