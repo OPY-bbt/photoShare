@@ -1,65 +1,53 @@
 import Immutable from 'immutable'
 
 import {
-	SET_SNACKBAR_STATE,
   SIGNUP_SHOW,
   SIGNUP_CREATE,
-  SIGNUP_CANCEL
+  SIGNUP_CANCEL,
+  LOGIN_SUCCESS,
+  INDEX_UIDISPLAY,
+  INDEX_UPDATEMORE,
+  INDEX_GENERATESTATUS,
+  SHOWUPLOADPICMESSAGE
 } from '../actions'
 
 let defaultState = {
-    visible: true,
-    isShowMenu:true,
-    isShowImageExp: false,
-    isNeedScroll: false,
-    isShowSysSetting: false,
-    isShowRoomInfo: window.innerWidth > 980 ? true:false,
-    isShowCreateRoom: false,
-    isShowSearchUser: false,
-    isShowExpression: false,
-    isShowRichText: false,
-    isLoading: false,
-    listState:'roomList',
-    badgeCount: {},
-    modalState: {
-        modalInfo: {
-            title: '',
-            owner: '',
-            timestamp: 0,
-        },
-        isShow: false
-    },
-    infoCardState: {
-        nickname: 'loading...',
-        avatar: 'loading...',
-        info: '...',
-        isShow:false
-    },
-    expression: {
-        timestamp: null,
-        emoji:''
-    },
-    snackbar:{
-        open: false,
-        autoHideDuration: 3000
-    }
+  visible: false,
+  controlUI: true,
+  updateButton: true,
+  generateStatus: true,
+  loginSuccess: false,
+  userName: null,
+  showMessage: false
 }
 defaultState = Immutable.fromJS(defaultState);
 export default function pageState(state = defaultState, action) {
 	switch (action.type) {
-		case SET_SNACKBAR_STATE: {
-      let snackbar = Immutable.fromJS({snackbar:action.state});
-      return state.mergeDeep(snackbar);
-    }
-    case SIGNUP_SHOW:{
-      let visible = Immutable.fromJS({visible:action.visible});
-      return state.mergeDeep(visible);
-    }
+    case SIGNUP_SHOW:
+    case SIGNUP_CANCEL:
     case SIGNUP_CREATE:{
-      return {visible: state.visible}
+      let visible = state.get('visible');
+      return state.set('visible', !visible);
     }
-    case SIGNUP_CANCEL: {
-      return {visible: state.visible}
+    case INDEX_UIDISPLAY:{
+      let controlUI = state.get('controlUI');
+      return state.set('controlUI', !controlUI);
+    }
+    case INDEX_UPDATEMORE:{
+      let updateButton = state.get('updateButton');
+      return state.set('updateButton', !updateButton);
+    }
+    case INDEX_GENERATESTATUS: {
+      let generateStatus = state.get('generateStatus');
+      return state.set('generateStatus', !generateStatus);
+    }
+    case LOGIN_SUCCESS: {
+      let res = Immutable.fromJS({'loginSuccess': action.loginSuccess, 'userName': action.userName})
+      return state.mergeDeep(res);
+    }
+    case SHOWUPLOADPICMESSAGE: {
+      let showMessage = state.get('showMessage');
+      return state.set('showMessage', !showMessage);
     }
     default: {
       return state;

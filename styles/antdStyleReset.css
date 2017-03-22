@@ -10,3 +10,20 @@ body{
 #sign-wrap .login-form-button {
   width: 100%;
 }
+.ant-upload.ant-upload-drag {
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.ant-layout-footer {
+	margin-top: 20px;
+	border-top: 1px solid #cecece;
+	text-align: center;
+}
+.ant-spin-nested-loading > div > .ant-spin{
+	max-height: 500px;
+	height: 500px;
+	z-index: 999;
+}

@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react'
 import { Link } from 'react-router'
 import Sign from '../../containers/Sign'
-import { login } from '../../actions'
+import { login, signup } from '../../actions'
 
 export default class Login extends Component {
 	constructor(props) {
@@ -15,6 +15,7 @@ export default class Login extends Component {
 					btnText = 'login'
 					link = '/signup'
 					clickFunc = {login}
+					clickFuncSignUp = {signup}
 				/>
 			</div>
 		)

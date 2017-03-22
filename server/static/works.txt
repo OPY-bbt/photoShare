@@ -1,0 +1,11 @@
+/Users/zhangyan/Desktop/photoShare/server/static/zy/2.png
+/Users/zhangyan/Desktop/photoShare/server/static/zy/3.png
+/Users/zhangyan/Desktop/photoShare/server/static/zy/4.png
+/Users/zhangyan/Desktop/photoShare/server/static/zy/5.png
+/Users/zhangyan/Desktop/photoShare/server/static/zy/6.png
+/Users/zhangyan/Desktop/photoShare/server/static/zy/7.png
+/Users/zhangyan/Desktop/photoShare/server/static/zy/8.png
+/Users/zhangyan/Desktop/photoShare/server/static/zy/9.png
+/Users/zhangyan/Desktop/photoShare/server/static/zy/10.png
+/Users/zhangyan/Desktop/photoShare/server/static/zy/11.png
+/Users/zhangyan/Desktop/photoShare/server/static/zy/12.png

@@ -12,18 +12,28 @@ import Login from './pages/login';
 
 import store from './store';
 
+import {socket, showUploadPicMessage} from './actions';
+
 import "../styles/antdStyleReset.css"
+
 
 const handleEnter = (nextState, replace) => {
 	console.log('there is user longin')
+	store.getState().getIn(['pageState', 'loginSuccess'])
 
-	let login = false;
+	let login = store.getState().getIn(['pageState', 'loginSuccess']);
+	
 	if(login) {
-		console.log('welcome');
+		replace({pathname: '/index'});
 	}else {
 		replace({pathname: '/login'});
 	}
 }
+
+socket.on('news', function (data) {
+  console.log(data);
+  socket.emit('my other event', { my: 'data' });
+});
 
 const render = (Component) => {
   ReactDOM.render(
@@ -32,8 +42,9 @@ const render = (Component) => {
 	      <div>
 	      	<Router history = {hashHistory}>
 	      		<Route path = '/' component = {App}>
-							<IndexRoute component = {Index} onEnter = {(nextState, replace)=>handleEnter(nextState, replace)} />
-							<Route path = 'login' component={Login} />		
+							<IndexRoute component = {Index} onEnter = {(nextState, replace) => handleEnter(nextState, replace)} />
+							<Route path = 'login' component={Login} />
+							<Route path = 'index' component={Index} />	
 	      		</Route>
 	      	</Router>
 	      </div>
@@ -44,6 +55,7 @@ const render = (Component) => {
 };
 
 render();
+
 
 // Hot Module Replacement API
 if (module.hot) {
