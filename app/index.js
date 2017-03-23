@@ -18,8 +18,8 @@ import "../styles/antdStyleReset.css"
 
 
 const handleEnter = (nextState, replace) => {
-	console.log('there is user longin')
-	store.getState().getIn(['pageState', 'loginSuccess'])
+	//console.log('there is user longin')
+	//store.getState().getIn(['pageState', 'loginSuccess'])
 
 	let login = store.getState().getIn(['pageState', 'loginSuccess']);
 	
@@ -31,7 +31,7 @@ const handleEnter = (nextState, replace) => {
 }
 
 socket.on('news', function (data) {
-  console.log(data);
+  //console.log(data);
   socket.emit('my other event', { my: 'data' });
 });
 

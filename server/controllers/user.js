@@ -92,6 +92,11 @@ exports.uploadPic = (revData, userName) => {
 							})
 							resolve(res);
 						})
+						fs.writeFile(pathHeader + 'works.txt', fileName.replace(/.*static/, '') + '\r', {flag: 'a'}, (err)=>{
+							if(err) {
+								console.log(err)
+							}
+						})
 					}else {
 						fs.mkdir(userFile, (err) =>{
 							if(err) {
@@ -115,7 +120,7 @@ exports.uploadPic = (revData, userName) => {
 								})
 								resolve(res);
 							})
-							fs.writeFile(pathHeader + 'works.txt', userFile + '0.png' + '\r', {flag: 'a'}, (err)=>{
+							fs.writeFile(pathHeader + 'works.txt', userFile.replace(/.*static/, '') + '0.png' + '\r', {flag: 'a'}, (err)=>{
 								if(err) {
 									console.log(err)
 								}

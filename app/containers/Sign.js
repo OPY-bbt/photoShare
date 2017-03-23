@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Sign from '../components/Sign'
-import { setSnackbarState,  signupShow, signupCreate, signupCancel, loginSuccess} from '../actions'
+import { setSnackbarState,  signupShow, signupCreate, signupCancel, loginSuccess, pushImgList} from '../actions'
 function mapStateToProps(state) {
 		//console.log('state', state.getIn(['pageState', 'visible']));
     return {
@@ -9,6 +9,6 @@ function mapStateToProps(state) {
     }
 }
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({setSnackbarState, signupShow, signupCreate, signupCancel, loginSuccess}, dispatch);
+    return bindActionCreators({setSnackbarState, signupShow, signupCreate, signupCancel, loginSuccess, pushImgList}, dispatch);
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Sign);

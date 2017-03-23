@@ -8,7 +8,8 @@ import {
   INDEX_UIDISPLAY,
   INDEX_UPDATEMORE,
   INDEX_GENERATESTATUS,
-  SHOWUPLOADPICMESSAGE
+  SHOWUPLOADPICMESSAGE,
+  INDEX_PUSHIMGLIST
 } from '../actions'
 
 let defaultState = {
@@ -18,7 +19,8 @@ let defaultState = {
   generateStatus: true,
   loginSuccess: false,
   userName: null,
-  showMessage: false
+  showMessage: false,
+  showImages: []
 }
 defaultState = Immutable.fromJS(defaultState);
 export default function pageState(state = defaultState, action) {
@@ -48,6 +50,11 @@ export default function pageState(state = defaultState, action) {
     case SHOWUPLOADPICMESSAGE: {
       let showMessage = state.get('showMessage');
       return state.set('showMessage', !showMessage);
+    }
+    case INDEX_PUSHIMGLIST: {
+      let images = state.get('showImages');
+      let res = images.concat(action.content);
+      return state.set('showImages', res);
     }
     default: {
       return state;

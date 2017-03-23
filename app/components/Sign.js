@@ -79,8 +79,9 @@ class Sign extends React.Component {
               message.error('password is error')
             }
           }else {
-            console.log(result.works);
-            message.success('user login success')
+            //console.log(result.works);
+            this.props.pushImgList(result.works);
+            message.success('user login success');
             this.props.loginSuccess(userName);
             hashHistory.push('/');
           }

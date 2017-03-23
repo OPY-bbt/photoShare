@@ -23,7 +23,7 @@ export const showUploadPicMessage = (user, imgUrl) => {
 //登录&注册&登出处理
 export const login = (userName,password)=>{
   return new Promise((resolve,reject) => {
-    socket.emit('login',{userName,password},(info)=>{
+    socket.emit('login',{userName,password}, (info)=>{
       resolve(info);
     })
   })
@@ -31,7 +31,7 @@ export const login = (userName,password)=>{
 
 export const signup = (userName, password, qq, des, sex) => {
   return new Promise((resolve, reject) => {
-    socket.emit('signup', {userName, password, qq, des, sex},(info) =>{
+    socket.emit('signup', {userName, password, qq, des, sex}, (info) =>{
       resolve(info);
     })
   })
@@ -40,6 +40,14 @@ export const signup = (userName, password, qq, des, sex) => {
 export const uploadPic = (imgUrl, userName) => {
   return new Promise((resolve, reject) => {
     socket.emit('uploadPic', {imgUrl, userName}, (info) => {
+      resolve(info);
+    })
+  })
+}
+
+export const loadMorePic = () => {
+  return new Promise((resolve, reject) => {
+    socket.emit('loadMorePic', {}, () => {
       resolve(info);
     })
   })
@@ -82,6 +90,7 @@ export const loginSuccess = (userName) => {
 export const INDEX_UIDISPLAY = 'INDEX_UIDISPLAY';
 export const INDEX_UPDATEMORE = 'INDEX_UPDATEMORE';
 export const INDEX_GENERATESTATUS = 'INDEX_GENERATESTATUS';
+export const INDEX_PUSHIMGLIST = 'INDEX_PUSHIMGLIST';
 
 export const indexUIDisplay = () => {
   return {
@@ -100,3 +109,11 @@ export const indexGenerateStatus = () => {
     type: INDEX_GENERATESTATUS
   }
 }
+
+export const pushImgList = (lists) => {
+  return {
+    type: INDEX_PUSHIMGLIST,
+    content: lists
+  }
+}
+

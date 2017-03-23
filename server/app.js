@@ -25,7 +25,7 @@ mongoose.connect(dbUrl);
 
 //app.use(router.middleware())
 
-app.use(serve(path.join(__dirname, '../dist')));
+app.use(serve(path.join(__dirname, './static')));
 
 server.listen(3500, () => {
 	console.log('open in 3500')

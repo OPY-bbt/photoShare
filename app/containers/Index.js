@@ -8,7 +8,9 @@ function mapStateToProps(state) {
 		controlUI: state.getIn(['pageState', 'controlUI']),
 		updateButton: state.getIn(['pageState', 'updateButton']),
 		generateStatus: state.getIn(['pageState', 'generateStatus']),
-		userName: state.getIn(['pageState', 'userName'])
+		userName: state.getIn(['pageState', 'userName']),
+		showImages: state.getIn(['pageState', 'showImages']),
+		loginSuccess: state.getIn(['pageState', 'loginSuccess'])
 	}
 }
 

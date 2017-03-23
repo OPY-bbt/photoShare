@@ -44,6 +44,10 @@ export default class Index extends Component {
     this.generating = false;
     //this.frist = true;
 
+    if(!this.props.loginSuccess) {
+      hashHistory.push('/login')
+    }
+
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
 
@@ -222,6 +226,9 @@ export default class Index extends Component {
     let uiBool = this.props.controlUI;
     let updateButton = this.props.updateButton;
     //console.log(this.state.generating)
+    //console.log(this.props.showImages.toArray());
+    let imageArray = this.props.showImages.toArray();
+    //console.log(imageArray)
     return (
       <div>
         <input style={{display: 'none'}} type="file" name="uploadPic" ref={(input) => { this.fileInput = input; }} onChange={this.fileSelected}/>
@@ -274,108 +281,15 @@ export default class Index extends Component {
               全部的图片
             </div>
             <div className={style.main}>
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi.jpg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi2.jpeg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi.jpg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi3.jpeg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi2.jpeg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi3.jpeg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi.jpg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi.jpg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi.jpg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi.jpg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi.jpg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi.jpg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi2.jpeg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi.jpg" />
-                </div>
-              </div>
-              
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi.jpg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi3.jpeg" />
-                </div>
-              </div>
-
-              <div className={style.box}>
-                <div className={style.img}>
-                  <img src="./meizi2.jpeg" />
-                </div>
-              </div>
-
+              {
+                imageArray.map((imgSrc, index) => 
+                  <div className={style.box} key={index}>
+                    <div className={style.img}>
+                      <img src={imgSrc} />
+                    </div>
+                  </div>
+                )
+              }
             </div>
           </Content>
           <Footer>
