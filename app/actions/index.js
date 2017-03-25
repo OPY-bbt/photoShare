@@ -47,7 +47,7 @@ export const uploadPic = (imgUrl, userName) => {
 
 export const loadMorePic = () => {
   return new Promise((resolve, reject) => {
-    socket.emit('loadMorePic', {}, () => {
+    socket.emit('loadMorePic', {}, (info) => {
       resolve(info);
     })
   })

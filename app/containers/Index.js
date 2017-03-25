@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Index from '../components/Index'
-import {indexUIDisplay, indexUpdateMore, indexGenerateStatus} from '../actions'
+import {indexUIDisplay, indexUpdateMore, indexGenerateStatus, loadMorePic, pushImgList} from '../actions'
 
 function mapStateToProps(state) {
 	return {
@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({indexUIDisplay, indexUpdateMore, indexGenerateStatus}, dispatch)
+	return bindActionCreators({indexUIDisplay, indexUpdateMore, indexGenerateStatus, loadMorePic, pushImgList}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

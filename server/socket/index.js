@@ -27,15 +27,11 @@ module.exports = (io) => {
 	  			});
 
 	  			rl.on('line', (line) => {
-	  			  //console.log(`文件的单行内容：${line}`);
 	  			  all.push(line);
 	  			});
 
 	  			rl.on('close', (line) => {
-	  			  //console.log(`文件的单行内容：${line}`);
-	  			  //all.push(line);
-	  			  //console.log(all)
-	  			  res.works = all;
+	  			  res.works = getTenItem(all);
 	  			  cb(res);
 	  			});
 	  		}else {
@@ -71,5 +67,39 @@ module.exports = (io) => {
 	  		})
 	  	}
 	  })
+
+	  socket.on('loadMorePic', (data, cb) => {
+  		let all = [];
+  		let res = [];
+  		const rl = readline.createInterface({
+  		  input: fs.createReadStream('./static/works.txt')
+  		});
+
+  		rl.on('line', (line) => {
+  		  all.push(line);
+  		});
+
+  		rl.on('close', (line) => {
+  		  res = getTenItem(all);
+  		  cb(res);
+  		});
+	  })
 	});
+}
+
+const getTenItem = (arr) => {
+	let length = arr.length;
+	if(length <= 10) {
+		return arr;
+	}
+
+	let i = 10
+	   ,index
+		 ,res = [];
+	while(i){
+		i--;
+		index = Math.floor(Math.random() * length)
+		res.push(arr[index]);
+	}
+	return res;
 }
