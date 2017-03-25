@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-export const socket = io.connect('http://localhost:3500')
+export const socket = io.connect('http://123.206.187.156:3500')
 
 export const SET_SNACKBAR_STATE = 'SET_SNACKBAR_STATE';
 
